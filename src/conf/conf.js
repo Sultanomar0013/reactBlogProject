@@ -6,4 +6,4 @@ const conf = {
     appWriteBucketID:String(import.meta.env.APPWRITE_BUCKET_ID),
 }
 
-export default conf;
+export default conf; 
