@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import './App.css'
 import AuthService from './appwrite/auth'
@@ -9,23 +10,18 @@ function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
-useEffect(() => {
-        const fetchCurrentUser = async () => {
-            try {
-                const userData = await AuthService.getCurrentUser();
-                if (userData) {
-                    dispatch(login({ userData }));
-                } else {
-                    dispatch(logout());
-                }
-            } catch (error) {
-                console.error("Error fetching current user:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchCurrentUser();
-    }, [dispatch]);
+
+  useEffect(() => {
+    AuthService.getCurrentUser()
+    .then((userData) => {
+      if (userData) {
+        dispatch(login({userData}))
+      } else {
+        dispatch(logout())
+      }
+    })
+    .finally(() => setLoading(false))
+  }, [])
   
   return !loading ? (
     <>
