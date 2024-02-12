@@ -10,9 +10,9 @@ import ErrorBoundary from './erroboundary.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <ErrorBoundary> */}
+      <ErrorBoundary>
             <App />
-      {/* </ErrorBoundary> */}
+      </ErrorBoundary>
       
     </Provider>
   </React.StrictMode>,
